@@ -1,0 +1,90 @@
+image:
+  name: kryptonmc/downloads-api
+  pullPolicy: IfNotPresent
+
+deployment:
+  replicas: 1
+  terminationGracePeriodSeconds: 60
+  minReadySeconds: 0
+  annotations: {}
+  labels: {}
+  podAnnotations: {}
+  podLabels: {}
+  initContainers: []
+  additionalContainers: []
+  additionalVolumes: []
+  imagePullSecrets: []
+  lifecycle: {}
+
+service:
+  type: ClusterIP
+  port: 8080
+  annotations: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 60
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 60
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  host: downloads-api.local
+  paths:
+    - path: /downloads
+      pathType: Prefix
+  tls: []
+
+rollingUpdate:
+  maxUnavailable: 0
+  maxSurge: 1
+
+probes:
+  port: 8080
+  scheme: "HTTP"
+  readiness:
+    initialDelaySeconds: 2
+    periodSeconds: 10
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 1
+  liveness:
+    initialDelaySeconds: 2
+    periodSeconds: 10
+    timeoutSeconds: 2
+    successThreshold: 1
+    failureThreshold: 3
+
+persistence:
+  enabled: true
+  name: "data"
+  size: 8Gi
+  accessMode: ReadWriteOnce
+  annotations: {}
+  path: /downloads/data
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""

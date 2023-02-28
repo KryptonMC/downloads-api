@@ -1,0 +1,12 @@
+apiVersion: v2
+name: downloads-api
+version: 1.0.0
+description: Downloads API Kubernetes Deployment
+type: application
+home: "https://api.kryptonmc.org/downloads"
+sources:
+  - "https://github.com/KryptonMC/downloads-api"
+maintainers:
+  - name: "BomBardyGamer"
+    email: "callum.seabrook@prevarinite.com"
+appVersion: "1.0.0"

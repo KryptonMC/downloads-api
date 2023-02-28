@@ -33,6 +33,6 @@ dependencies {
     implementation("org.springdoc", "springdoc-openapi-starter-webmvc-ui", "2.0.2")
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+tasks.bootJar {
+    archiveFileName.set("DownloadsAPI-${project.version}.jar")
 }
