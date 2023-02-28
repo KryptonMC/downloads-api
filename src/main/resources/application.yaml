@@ -1,0 +1,22 @@
+spring:
+  data:
+    mongodb:
+      database: "downloads"
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: true
+
+springdoc:
+  api-docs:
+    path: "/downloads/openapi"
+  show-actuator: false
+  swagger-ui:
+    disable-swagger-default-url: true
+    operations-sorter: "alpha"
+    path: "/downloads/docs/"
+    show-common-extensions: true
+
+app:
+  storage-path: "downloads"
