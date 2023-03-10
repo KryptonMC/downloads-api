@@ -24,5 +24,3 @@ springdoc:
 
 app:
   storage-path: "downloads"
-  tokens:
-    - ""
