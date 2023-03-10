@@ -7,6 +7,10 @@ spring:
   web:
     resources:
       add-mappings: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
 
 springdoc:
   api-docs:
@@ -20,3 +24,5 @@ springdoc:
 
 app:
   storage-path: "downloads"
+  tokens:
+    - ""

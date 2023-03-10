@@ -11,8 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @CompoundIndex(def = "{'project': 1, 'name': 1}")
 @Document(collection = "versions")
-public record Version(@Id ObjectId _id, ObjectId project, String name, Instant time, List<Change> changes,
-                      String artifact) {
+public record Version(@Id ObjectId _id, ObjectId project, String name, Instant time, List<Change> changes) {
 
     public static final Comparator<Version> COMPARATOR = Comparator.comparing(Version::time);
 

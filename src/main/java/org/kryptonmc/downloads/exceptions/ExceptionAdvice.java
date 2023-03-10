@@ -27,6 +27,12 @@ public class ExceptionAdvice {
         return error(HttpStatus.NOT_FOUND, "The version '" + exception.versionId + "' does not exist for project '" + exception.projectId + "'!");
     }
 
+    @ExceptionHandler(VersionAlreadyExistsException.class)
+    @ResponseBody
+    public ResponseEntity<?> versionAlreadyExists(final VersionAlreadyExistsException exception) {
+        return error(HttpStatus.BAD_REQUEST, "The version '" + exception.versionId + "' already exists for project '" + exception.projectId + "'!");
+    }
+
     private ResponseEntity<?> error(final HttpStatus status, final String error) {
         return ResponseEntity.status(status).body(new ErrorResponse(error));
     }

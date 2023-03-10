@@ -13,4 +13,6 @@ public interface VersionCollection extends MongoRepository<Version, ObjectId> {
     List<Version> findAllByProject(ObjectId project);
 
     Optional<Version> findByProjectAndName(ObjectId project, String name);
+
+    boolean existsByName(String name);
 }

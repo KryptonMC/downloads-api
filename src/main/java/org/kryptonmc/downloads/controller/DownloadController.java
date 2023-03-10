@@ -113,8 +113,7 @@ public class DownloadController {
         try {
             return new JavaArchive(config.storagePath()
                 .resolve(project.name())
-                .resolve(version.name())
-                .resolve(version.artifact()));
+                .resolve(version.name() + ".jar"));
         } catch (final IOException exception) {
             throw new DownloadFailedException(exception);
         }
@@ -177,8 +176,7 @@ public class DownloadController {
         try {
             return new JavaArchive(config.storagePath()
                 .resolve(project.name())
-                .resolve(version.name())
-                .resolve(version.artifact()));
+                .resolve(version.name() + ".jar"));
         } catch (final IOException exception) {
             throw new DownloadFailedException(exception);
         }
