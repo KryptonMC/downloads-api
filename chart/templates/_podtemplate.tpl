@@ -22,7 +22,7 @@
       {{- end }}
       containers:
       - name: {{ template "downloads-api.fullname" . }}
-        image: "{{ .Values.image.name }}:{{ default .Chart.AppVersion .Values.image.tag }}"
+        image: "{{ .Values.image.name }}:latest"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         stdin: true
         {{- with .Values.resources }}
