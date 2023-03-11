@@ -7,6 +7,7 @@ import org.kryptonmc.downloads.database.model.Version;
 import org.kryptonmc.downloads.database.repository.ProjectCollection;
 import org.kryptonmc.downloads.database.repository.VersionCollection;
 import org.kryptonmc.downloads.exceptions.ProjectNotFoundException;
+import org.kryptonmc.downloads.exceptions.UploadFailedException;
 import org.kryptonmc.downloads.exceptions.VersionAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -52,7 +53,7 @@ public final class UploadController {
             Files.deleteIfExists(path);
             file.transferTo(path);
         } catch (final IOException exception) {
-            throw new RuntimeException(exception);
+            throw new UploadFailedException(exception);
         }
 
         final ObjectId id = new ObjectId();

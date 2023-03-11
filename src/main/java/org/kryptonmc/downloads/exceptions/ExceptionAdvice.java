@@ -1,5 +1,7 @@
 package org.kryptonmc.downloads.exceptions;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,9 +11,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class ExceptionAdvice {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionAdvice.class);
+
     @ExceptionHandler(DownloadFailedException.class)
     @ResponseBody
     public ResponseEntity<?> downloadFailed(final DownloadFailedException exception) {
+        LOGGER.warn("Failed to download artifact", exception);
+        return error(HttpStatus.INTERNAL_SERVER_ERROR, "An internal error occurred while trying to download the artifact!");
+    }
+
+    @ExceptionHandler(UploadFailedException.class)
+    @ResponseBody
+    public ResponseEntity<?> uploadFailed(final UploadFailedException exception) {
+        LOGGER.warn("Failed to upload artifact", exception);
         return error(HttpStatus.INTERNAL_SERVER_ERROR, "An internal error occurred while trying to download the artifact!");
     }
 
