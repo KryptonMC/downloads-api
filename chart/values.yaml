@@ -1,6 +1,6 @@
 image:
   name: kryptonmc/downloads-api
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 deployment:
   replicas: 1
