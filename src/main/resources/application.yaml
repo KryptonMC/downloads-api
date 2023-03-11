@@ -2,7 +2,6 @@ spring:
   data:
     mongodb:
       database: "downloads"
-      authentication-database:
   mvc:
     throw-exception-if-no-handler-found: true
   web:
