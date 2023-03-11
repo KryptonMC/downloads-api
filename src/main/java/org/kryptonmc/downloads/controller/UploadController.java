@@ -43,9 +43,10 @@ public final class UploadController {
             throw new VersionAlreadyExistsException(data.projectId, data.version);
         }
 
+        final String artifactName = data.projectId + "-" + data.version + ".jar";
         final Path path = config.storagePath()
             .resolve(data.projectId)
-            .resolve(data.version + ".jar");
+            .resolve(artifactName);
         try {
             Files.createDirectories(path.getParent());
             Files.deleteIfExists(path);

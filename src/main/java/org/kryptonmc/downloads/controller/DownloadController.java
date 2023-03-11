@@ -110,10 +110,11 @@ public class DownloadController {
         final Project project = projects.findByName(projectId).orElseThrow(() -> new ProjectNotFoundException(projectId));
         final Version version = versions.findByProjectAndName(project._id(), versionId)
             .orElseThrow(() -> new VersionNotFoundException(projectId, versionId));
+        final String artifactName = project.name() + "-" + version.name() + ".jar";
         try {
             return new JavaArchive(config.storagePath()
                 .resolve(project.name())
-                .resolve(version.name() + ".jar"));
+                .resolve(artifactName));
         } catch (final IOException exception) {
             throw new DownloadFailedException(exception);
         }
@@ -173,10 +174,11 @@ public class DownloadController {
             .stream()
             .max(Version.COMPARATOR)
             .orElseThrow(() -> new VersionNotFoundException(projectId, "latest"));
+        final String artifactName = project.name() + "-" + version.name() + ".jar";
         try {
             return new JavaArchive(config.storagePath()
                 .resolve(project.name())
-                .resolve(version.name() + ".jar"));
+                .resolve(artifactName));
         } catch (final IOException exception) {
             throw new DownloadFailedException(exception);
         }
