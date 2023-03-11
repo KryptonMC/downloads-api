@@ -60,6 +60,6 @@ public final class UploadController {
         return ResponseEntity.ok().build();
     }
 
-    private record UploadData(String projectId, String version, List<Version.Change> changes, String artifactId) {
+    private record UploadData(String projectId, String version, List<Version.Change> changes) {
     }
 }

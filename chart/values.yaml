@@ -1,5 +1,5 @@
 image:
-  name: kryptonmc/downloads-api
+  name: kryptonmc/downloads-api:latest
   pullPolicy: IfNotPresent
 
 deployment:
